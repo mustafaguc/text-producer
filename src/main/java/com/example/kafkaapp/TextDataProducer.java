@@ -39,7 +39,7 @@ public class TextDataProducer {
             return;
         }
         // Sends the Link message to the topic, distributing across partitions based on the line index
-        kafkaTemplate.send(TOPIC, "KEY-" + (lineIndex % PARTITION_COUNT), text);
+        kafkaTemplate.send(TOPIC, STR."KEY-\{lineIndex % PARTITION_COUNT}", text);
     }
 
     public void sendContentOf(File file) {
