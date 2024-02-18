@@ -23,7 +23,7 @@ public class TextDataController {
     public Optional<String> uploadTextFile(@RequestParam("file") MultipartFile file) throws IOException {
         Path tempFile = Files.createTempFile(file.getOriginalFilename(), null);
         file.transferTo(tempFile);
-        producer.sendContentOf(tempFile.toFile());
+        Thread.ofVirtual().start(() -> producer.sendContentOf(tempFile.toFile()));
         return Optional.of(tempFile.toString());
     }
 
